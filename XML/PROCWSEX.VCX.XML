@@ -1,0 +1,37 @@
+<VFPData>
+    <memberdata name="_cerrar" type="property" display="_cerrar"/>
+    <memberdata name="_release" type="method" display="_release"/>
+    <memberdata name="_sortg" type="property" display="_SortG"/>
+    <memberdata name="___historial___de___modificaciones___" type="method" display="___Historial___De___Modificaciones___"/>
+    <memberdata name="reloadurls" type="method" display="ReloadURLs"/>
+    <memberdata name="reloadmovimientos" type="method" display="ReloadMovimientos"/>
+    <memberdata name="reloadalbaranescompra" type="method" display="ReloadAlbaranesCompra"/>
+    <memberdata name="reloadpedidospreparados" type="method" display="ReloadPedidosPreparados"/>
+    <memberdata name="reloadpedidosexpedidos" type="method" display="ReloadPedidosExpedidos"/>
+    <memberdata name="reloaddevolucionescliente" type="method" display="ReloadDevolucionesCliente"/>
+    <memberdata name="exportarmovimientos" type="method" display="ExportarMovimientos"/>
+    <memberdata name="exportaralbaranescompra" type="method" display="ExportarAlbaranesCompra"/>
+    <memberdata name="exportarpedidospreparados" type="method" display="ExportarPedidosPreparados"/>
+    <memberdata name="exportarpedidosexpedidos" type="method" display="ExportarPedidosExpedidos"/>
+    <memberdata name="exportardevolucionescliente" type="method" display="ExportarDevolucionesCliente"/>
+    <memberdata name="sortg" type="method" display="SortG"/>
+    <memberdata name="usrerror" type="property" display="UsrError"/>
+    <memberdata name="inicio" type="method" display="Inicio"/>
+    <memberdata name="itr" type="method" display="Itr"/>
+    <memberdata name="loadtf6" type="property" display="LoadTF6"/>
+    <memberdata name="loadws" type="property" display="LoadWS"/>
+    <memberdata name="loadx" type="property" display="LoadX"/>
+    <memberdata name="ows" type="property" display="oWS"/>
+    <memberdata name="__tf" type="property" display="__TF"/>
+    <memberdata name="ficherourls" type="property" display="FicheroUrls"/>
+    <memberdata name="ficherotmov" type="property" display="FicheroTMOV"/>
+    <memberdata name="ficherotdoc" type="property" display="FicheroTDOC"/>
+    <memberdata name="ficherodevc" type="property" display="FicheroDEVC"/>
+    <memberdata name="ficherosps" type="property" display="FicheroSPS"/>
+    <memberdata name="ficheross" type="property" display="FicheroSS"/>
+    <memberdata name="swcargamov" type="property" display="SwCargaMov"/>
+    <memberdata name="swcargaalb" type="property" display="SwCargaAlb"/>
+    <memberdata name="swcargappr" type="property" display="SwCargaPPr"/>
+    <memberdata name="swcargapex" type="property" display="SwCargaPEx"/>
+    <memberdata name="swcargadvc" type="property" display="SwCargaDvC"/>
+</VFPData>

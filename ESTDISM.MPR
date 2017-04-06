@@ -1,0 +1,64 @@
+*       *********************************************************
+*       *                                                         
+*       * 06/03/2000            ESTDISM.MPR             12:47:04  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * Nombre del autor                                        
+*       *                                                         
+*       * Copyright (C) 2000 Nombre de compañía                   
+*       * Dirección                                               
+*       * Ciudad,     Código pos                                  
+*       * País                                              
+*       *                                                         
+*       * Descripción:                                            
+*       * Este PROGRAMA lo ha generado automáticamente GENMENU.    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                    Definición de menú                   
+*       *                                                         
+*       *********************************************************
+*
+
+DEFINE POPUP menúcontex SHORTCUT RELATIVE FROM MROW(),MCOL()
+DEFINE BAR 1 OF menúcontex PROMPT "Estadística Distribución/\<Mes" ;
+	MESSAGE 'Estadística Distribución/Mes'
+ON SELECTION BAR 1 OF menúcontex ;
+	DO _01u0rei9r ;
+	IN LOCFILE("JANSSEN\ESTDISM" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTDISM?")
+
+ACTIVATE POPUP menúcontex
+
+*       *********************************************************
+*       *                                                         
+*       * _01U0REI9R  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTDISM.MPR,            Record:    5        
+*       * Called By:  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       * Prompt:     Estadística Distribución/Mes                
+*       * Snippet:    1                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01u0rei9r
+*> ThisForm.itr('EDM')
+_Label1 = 'LISTADO DE ESTADISTICAS DISTRIBUCION / MES'
+
+Select ESTDISM
+_Alias = Alias()
+_RecNo = RecNo()
+
+Go Top
+If !Eof()
+   Do Form St3Imp2 With _Label1, 'ESTDISML1', 'ESTDISM'
+EndIf
+
+Select (_Alias)
+Go _RecNo
+

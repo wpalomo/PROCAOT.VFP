@@ -1,0 +1,7 @@
+UPDATE F10T001 SET F10TDESCRI='CROSSDOCKING',F10TABREVI='CROSS' WHERE F10TCODNUM='C'
+insert into f10t001 values ('C','CROSSDOCKING','CROSS')
+
+
+
+insert into f10t001 values('P','CARRO','CARRO')
+insert into f10t001 values ('O','MOSTRADOR','MOSTRADOR')

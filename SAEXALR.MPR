@@ -1,0 +1,181 @@
+*       *********************************************************
+*       *                                                         
+*       * 11/07/2000            SAEXALR.MPR             12:58:35  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * Nombre del autor                                        
+*       *                                                         
+*       * Copyright (C) 2000 Nombre de compañía                   
+*       * Dirección                                               
+*       * Ciudad,     Código pos                                  
+*       * País                                              
+*       *                                                         
+*       * Descripción:                                            
+*       * Este PROGRAMA lo ha generado automáticamente GENMENU.    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                    Definición de menú                   
+*       *                                                         
+*       *********************************************************
+*
+
+DEFINE POPUP menúcontex SHORTCUT RELATIVE FROM MROW(),MCOL()
+DEFINE BAR 1 OF menúcontex PROMPT "Albarán de Transporte (Global)" ;
+	MESSAGE 'Impresión de Lista de Inventario - Nº de Lista'
+DEFINE BAR 2 OF menúcontex PROMPT "Albaran de Transporte (Detalle)" ;
+	MESSAGE 'Impresión de Lista de Inventario - Recuento'
+DEFINE BAR 3 OF menúcontex PROMPT "Resumen de Expediciones" ;
+	MESSAGE 'Impresión de Lista de Inventario - Control'
+ON SELECTION BAR 1 OF menúcontex ;
+	DO _05d0rta2l ;
+	IN LOCFILE("JANSSEN\SAEXALR" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está SAEXALR?")
+ON SELECTION BAR 2 OF menúcontex ;
+	DO _05d0rta34 ;
+	IN LOCFILE("JANSSEN\SAEXALR" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está SAEXALR?")
+ON SELECTION BAR 3 OF menúcontex ;
+	DO _05d0rta3b ;
+	IN LOCFILE("JANSSEN\SAEXALR" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está SAEXALR?")
+
+ACTIVATE POPUP menúcontex
+
+*       *********************************************************
+*       *                                                         
+*       * _05D0RTA2L  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  SAEXALR.MPR,            Record:    5        
+*       * Called By:  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       * Prompt:     Albarán de Transporte (Global)              
+*       * Snippet:    1                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _05d0rta2l
+*>
+*> Enlace con impresión de albaranes de transporte - global.
+Local _r1
+
+Store .F. To _r1
+
+Select CABALR
+If !Eof()
+   _r1 = RecNo()
+EndIf
+
+*> Generar cursor para impresión de albaranes de transporte.
+Locate For Marca==1
+Do While Found()
+   Do GenAlrG With F31cHojRut In Listados
+
+   Select CABALR
+   Continue
+EndDo
+
+*> Impresión de los albaranes de transporte.
+Do PrtAlrG With NombreReportG In Listados
+
+If Type('_r1')=='N'
+   Select CABALR
+   Go _r1
+EndIf
+
+*>
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _05D0RTA34  ON SELECTION BAR 2 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  SAEXALR.MPR,            Record:    6        
+*       * Called By:  ON SELECTION BAR 2 OF POPUP menúcontex      
+*       * Prompt:     Albaran de Transporte (Detalle)             
+*       * Snippet:    2                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _05d0rta34
+*>
+*> Enlace con impresión de albaranes de transporte - detalle.
+Local _r1
+
+Store .F. To _r1
+
+Select CABALR
+If !Eof()
+   _r1 = RecNo()
+EndIf
+
+*> Generar cursor para impresión de albaranes de transporte.
+Locate For Marca==1
+Do While Found()
+   Do GenAlrD With F31cHojRut In Listados
+
+   Select CABALR
+   Continue
+EndDo
+
+*> Impresión de los albaranes de transporte.
+Do PrtAlrD With NombreReportD In Listados
+
+If Type('_r1')=='N'
+   Select CABALR
+   Go _r1
+EndIf
+
+*>
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _05D0RTA3B  ON SELECTION BAR 3 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  SAEXALR.MPR,            Record:    7        
+*       * Called By:  ON SELECTION BAR 3 OF POPUP menúcontex      
+*       * Prompt:     Resumen de Expediciones                     
+*       * Snippet:    3                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _05d0rta3b
+*>
+*> Enlace con impresión de resumen expediciones.
+Local _r1
+
+Store .F. To _r1
+
+Select CABALR
+If !Eof()
+   _r1 = RecNo()
+EndIf
+
+*> Generar cursor para impresión de resumen expediciones.
+Locate For Marca==1
+Do While Found()
+   Do GenAlrR With F31cHojRut In Listados
+
+   Select CABALR
+   Continue
+EndDo
+
+*> Impresión del resumen expediciones.
+Do PrtAlrR With NombreReportR In Listados
+
+If Type('_r1')=='N'
+   Select CABALR
+   Go _r1
+EndIf
+
+*>
+

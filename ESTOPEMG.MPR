@@ -1,0 +1,139 @@
+*       *********************************************************
+*       *                                                         
+*       * 21/02/2000           ESTOPEMG.MPR             17:45:08  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * Nombre del autor                                        
+*       *                                                         
+*       * Copyright (C) 2000 Nombre de compañía                   
+*       * Dirección                                               
+*       * Ciudad,     Código pos                                  
+*       * País                                              
+*       *                                                         
+*       * Descripción:                                            
+*       * Este PROGRAMA lo ha generado automáticamente GENMENU.    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                    Definición de menú                   
+*       *                                                         
+*       *********************************************************
+*
+
+DEFINE POPUP menúcontex SHORTCUT RELATIVE FROM MROW(),MCOL()
+DEFINE BAR 1 OF menúcontex PROMPT "\<Movimientos Operario/Mes" ;
+	MESSAGE 'Estadística Operario/Mes (Movimientos)'
+DEFINE BAR 2 OF menúcontex PROMPT "\<Listas Operario/Mes" ;
+	MESSAGE 'Estadística Operario/Mes (Listas de Trabajo)'
+DEFINE BAR 3 OF menúcontex PROMPT "\<Kilos Operario/Mes" ;
+	MESSAGE 'Estadística Operario/Mes (Kilos Preparados)'
+ON SELECTION BAR 1 OF menúcontex ;
+	DO _01g121s9z ;
+	IN LOCFILE("JANSSEN\ESTOPEMG" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTOPEMG?")
+ON SELECTION BAR 2 OF menúcontex ;
+	DO _01g121sa3 ;
+	IN LOCFILE("JANSSEN\ESTOPEMG" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTOPEMG?")
+ON SELECTION BAR 3 OF menúcontex ;
+	DO _01g121sa7 ;
+	IN LOCFILE("JANSSEN\ESTOPEMG" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTOPEMG?")
+
+ACTIVATE POPUP menúcontex
+
+*       *********************************************************
+*       *                                                         
+*       * _01G121S9Z  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTOPEMG.MPR,            Record:    5       
+*       * Called By:  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       * Prompt:     Movimientos Operario/Mes                    
+*       * Snippet:    1                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01g121s9z
+*>
+*> Gráfico de movimientos operario / mes.
+
+Select ESTOPEM
+If !Eof()
+   _Alias = Alias()
+   _RecNo = RecNo()
+
+   Scatter MemVar
+   m.CodPro = m.F62cCodPro
+   Do GenOpeMov In ProcGraph With _ASql, _em, ESTOPEM.F62cCodOpe
+
+   Select (_Alias)
+   Go _RecNo
+EndIf
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _01G121SA3  ON SELECTION BAR 2 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTOPEMG.MPR,            Record:    6       
+*       * Called By:  ON SELECTION BAR 2 OF POPUP menúcontex      
+*       * Prompt:     Listas Operario/Mes                         
+*       * Snippet:    2                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01g121sa3
+*>
+*> Gráfico de listas operario / mes.
+
+Select ESTOPEM
+If !Eof()
+   _Alias = Alias()
+   _RecNo = RecNo()
+
+   Scatter MemVar
+   m.CodPro = m.F62cCodPro
+   Do GenOpeLst In ProcGraph With _ASql, _em, ESTOPEM.F62cCodOpe
+
+   Select (_Alias)
+   Go _RecNo
+EndIf
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _01G121SA7  ON SELECTION BAR 3 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTOPEMG.MPR,            Record:    7       
+*       * Called By:  ON SELECTION BAR 3 OF POPUP menúcontex      
+*       * Prompt:     Kilos Operario/Mes                          
+*       * Snippet:    3                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01g121sa7
+*>
+*> Gráfico de listas kilos / mes.
+
+Select ESTOPEM
+If !Eof()
+   _Alias = Alias()
+   _RecNo = RecNo()
+
+   Scatter MemVar
+   m.CodPro = m.F62cCodPro
+   Do GenOpeKgs In ProcGraph With _ASql, _em, ESTOPEM.F62cCodOpe
+
+   Select (_Alias)
+   Go _RecNo
+EndIf
+

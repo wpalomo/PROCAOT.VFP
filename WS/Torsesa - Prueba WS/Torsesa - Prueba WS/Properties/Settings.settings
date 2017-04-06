@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Torsesa___Prueba_WS.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Torsesa___Prueba_WS_WSPrueba_PruebasSGA" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://62.82.59.121:7047/DynamicsNAV80/WS/CRONUS%20Espa%C3%B1a%20S.A./Codeunit/PruebasSGA</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

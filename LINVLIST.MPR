@@ -1,0 +1,136 @@
+*       *********************************************************
+*       *                                                         
+*       * 29/03/2004           LINVLIST.MPR             09:06:15  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * Nombre del autor                                        
+*       *                                                         
+*       * Copyright (C) 2004 Nombre de compañía                   
+*       * Dirección                                               
+*       * Ciudad,     Código pos                                  
+*       * País                                              
+*       *                                                         
+*       * Descripción:                                            
+*       * Este PROGRAMA lo ha generado automáticamente GENMENU.    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                    Definición de menú                   
+*       *                                                         
+*       *********************************************************
+*
+
+DEFINE POPUP menúcontex SHORTCUT RELATIVE FROM MROW(),MCOL()
+DEFINE BAR 1 OF menúcontex PROMPT "Lista \<Inventario - Nº de Lista" ;
+	MESSAGE 'Impresión de Lista de Inventario - Nº de Lista'
+DEFINE BAR 2 OF menúcontex PROMPT "Lista Inventario - \<Recuento" ;
+	MESSAGE 'Impresión de Lista de Inventario - Recuento'
+DEFINE BAR 3 OF menúcontex PROMPT "Lista Inventario \<Control" ;
+	MESSAGE 'Impresión de Lista de Inventario - Control'
+ON SELECTION BAR 1 OF menúcontex ;
+	DO _1790jihl6 ;
+	IN LOCFILE("PROCAOT\LINVLIST" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está LINVLIST?")
+ON SELECTION BAR 2 OF menúcontex ;
+	DO _1790jihlg ;
+	IN LOCFILE("PROCAOT\LINVLIST" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está LINVLIST?")
+ON SELECTION BAR 3 OF menúcontex ;
+	DO _1790jihlh ;
+	IN LOCFILE("PROCAOT\LINVLIST" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está LINVLIST?")
+
+ACTIVATE POPUP menúcontex
+
+*       *********************************************************
+*       *                                                         
+*       * _1790JIHL6  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  LINVLIST.MPR,            Record:    5       
+*       * Called By:  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       * Prompt:     Lista Inventario - Nº de Lista              
+*       * Snippet:    1                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _1790jihl6
+*>
+*> Impresión de inventario por Nº de Lista.
+
+_Alias = Alias()
+_RecNo = RecNo()
+
+
+*Do LinvList In Listados With m.LstInv2, F50c.F50cTipMov
+*Do PrtLinvList In Listados
+
+*> Impresión del inventario de carga.
+Select INVLST
+Go Top
+If !Eof()
+   _Label1 = "INVENTARIO POR LISTA"
+   Do Form St3Imp2 With _label1, 'InvCargL1', 'INVLST'
+EndIf
+
+Select (_Alias)
+Go _RecNo
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _1790JIHLG  ON SELECTION BAR 2 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  LINVLIST.MPR,            Record:    6       
+*       * Called By:  ON SELECTION BAR 2 OF POPUP menúcontex      
+*       * Prompt:     Lista Inventario - Recuento                 
+*       * Snippet:    2                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _1790jihlg
+*>
+*> Impresión de lista de inventario - Recuento.
+
+_Alias = Alias()
+_RecNo = RecNo()
+
+Do LinvLRec In Listados With m.LstInv2, F50c.F50cTipMov
+Do PrtLinvLRec In Listados
+
+Select (_Alias)
+Go _RecNo
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _1790JIHLH  ON SELECTION BAR 3 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  LINVLIST.MPR,            Record:    7       
+*       * Called By:  ON SELECTION BAR 3 OF POPUP menúcontex      
+*       * Prompt:     Lista Inventario Control                    
+*       * Snippet:    3                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _1790jihlh
+*>
+*> Impresión de lista de inventario - Control.
+
+_Alias = Alias()
+_RecNo = RecNo()
+
+Do LinvLCtr In Listados With m.LstInv2, F50c.F50cTipMov
+Do PrtLinvLCtr In Listados
+
+Select (_Alias)
+Go _RecNo
+

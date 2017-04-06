@@ -1,0 +1,9 @@
+C:\Users\jalopez\Documents\Visual Studio 2012\Projects\Torsesa - Prueba WS\Torsesa - Prueba WS\bin\Debug\Torsesa - Prueba WS.exe.config
+C:\Users\jalopez\Documents\Visual Studio 2012\Projects\Torsesa - Prueba WS\Torsesa - Prueba WS\obj\Debug\Torsesa - Prueba WS.csprojResolveAssemblyReference.cache
+C:\Users\jalopez\Documents\Visual Studio 2012\Projects\Torsesa - Prueba WS\Torsesa - Prueba WS\bin\Debug\Torsesa - Prueba WS.exe
+C:\Users\jalopez\Documents\Visual Studio 2012\Projects\Torsesa - Prueba WS\Torsesa - Prueba WS\bin\Debug\Torsesa - Prueba WS.pdb
+C:\Users\jalopez\Documents\Visual Studio 2012\Projects\Torsesa - Prueba WS\Torsesa - Prueba WS\obj\Debug\Torsesa - Prueba WS.exe
+C:\Users\jalopez\Documents\Visual Studio 2012\Projects\Torsesa - Prueba WS\Torsesa - Prueba WS\obj\Debug\Torsesa - Prueba WS.pdb
+D:\Proyectos\TORSESA\PROCAOT_R2\WS\Torsesa - Prueba WS\Torsesa - Prueba WS\bin\Debug\Torsesa - Prueba WS.exe.config
+D:\Proyectos\TORSESA\PROCAOT_R2\WS\Torsesa - Prueba WS\Torsesa - Prueba WS\obj\Debug\Torsesa - Prueba WS.exe
+D:\Proyectos\TORSESA\PROCAOT_R2\WS\Torsesa - Prueba WS\Torsesa - Prueba WS\obj\Debug\Torsesa - Prueba WS.pdb

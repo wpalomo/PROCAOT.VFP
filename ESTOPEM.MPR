@@ -1,0 +1,64 @@
+*       *********************************************************
+*       *                                                         
+*       * 17/02/2000            ESTOPEM.MPR             11:34:23  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * Nombre del autor                                        
+*       *                                                         
+*       * Copyright (C) 2000 Nombre de compañía                   
+*       * Dirección                                               
+*       * Ciudad,     Código pos                                  
+*       * País                                              
+*       *                                                         
+*       * Descripción:                                            
+*       * Este PROGRAMA lo ha generado automáticamente GENMENU.    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                    Definición de menú                   
+*       *                                                         
+*       *********************************************************
+*
+
+DEFINE POPUP menúcontex SHORTCUT RELATIVE FROM MROW(),MCOL()
+DEFINE BAR 1 OF menúcontex PROMPT "Estadística Operario/\<Mes" ;
+	MESSAGE 'Estadística Operario/Mes'
+ON SELECTION BAR 1 OF menúcontex ;
+	DO _01c0ot136 ;
+	IN LOCFILE("JANSSEN\ESTOPEM" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTOPEM?")
+
+ACTIVATE POPUP menúcontex
+
+*       *********************************************************
+*       *                                                         
+*       * _01C0OT136  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTOPEM.MPR,            Record:    5        
+*       * Called By:  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       * Prompt:     Estadística Operario/Mes                    
+*       * Snippet:    1                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01c0ot136
+*> ThisForm.itr('EOMG')
+_Label1 = 'LISTADO DE ESTADISTICAS OPERARIO / MES'
+
+Select ESTOPEM
+_Alias = Alias()
+_RecNo = RecNo()
+
+Go Top
+If !Eof()
+   Do Form St3Imp2 With _Label1, 'ESTOPEML1', 'ESTOPEM'
+EndIf
+
+Select (_Alias)
+Go _RecNo
+

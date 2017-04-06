@@ -1,0 +1,8 @@
+  <VFPData>
+    <memberdata name="___historial___de___modificaciones___" type="method" display="___Historial___De___Modificaciones___"/>
+    <memberdata name="___synopsis___" type="method" display="___Synopsis___"/>
+    <memberdata name="usrerror" type="property" display="UsrError"/>
+    <memberdata name="importarxmlsection" type="method" display="ImportarXMLSection"/>
+    <memberdata name="datetoddmmyyyy" type="method" display="DateToDDMMYYYY"/>
+    <memberdata name="datetoyyyymmdd" type="method" display="DateToYYYYMMDD"/>
+  </VFPData>

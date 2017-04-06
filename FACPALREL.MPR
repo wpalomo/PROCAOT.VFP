@@ -1,0 +1,201 @@
+*       *********************************************************
+*       *                                                         
+*       * 22/05/2008           FACPALREL.MPR            13:52:38  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * Nombre del autor                                        
+*       *                                                         
+*       * Copyright (C) 2008 Nombre de compañía                   
+*       * Dirección                                               
+*       * Ciudad,     Código pos                                  
+*       * País                                              
+*       *                                                         
+*       * Descripción:                                            
+*       * Este PROGRAMA lo ha generado automáticamente GENMENU.    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                    Definición de menú                   
+*       *                                                         
+*       *********************************************************
+*
+
+DEFINE POPUP menúcontex SHORTCUT RELATIVE FROM MROW(),MCOL()
+DEFINE BAR 1 OF menúcontex PROMPT "\<Relación de Palets (Entrada)" ;
+	MESSAGE 'Relación de Nºs de palets de entrada en almacén'
+DEFINE BAR 2 OF menúcontex PROMPT "R\<elación de Palets (Salida)" ;
+	MESSAGE 'Relación de Nºs de palets de salida de almacén'
+DEFINE BAR 3 OF menúcontex PROMPT "\<Diario Palets (Facturación)" ;
+	MESSAGE 'Diario de Entrada/Salida de palets en facturación'
+ON SELECTION BAR 1 OF menúcontex ;
+	DO _2dj0tqsa6 ;
+	IN LOCFILE("PROCAOT_R2\FACPALREL" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está FACPALREL?")
+ON SELECTION BAR 2 OF menúcontex ;
+	DO _2dj0tqsa7 ;
+	IN LOCFILE("PROCAOT_R2\FACPALREL" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está FACPALREL?")
+ON SELECTION BAR 3 OF menúcontex ;
+	DO _2dj0tqsa8 ;
+	IN LOCFILE("PROCAOT_R2\FACPALREL" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está FACPALREL?")
+
+ACTIVATE POPUP menúcontex
+
+*       *********************************************************
+*       *                                                         
+*       * _2DJ0TQSA6  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  FACPALREL.MPR,            Record:    5      
+*       * Called By:  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       * Prompt:     Relación de Palets (Entrada)                
+*       * Snippet:    1                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _2dj0tqsa6
+
+*> Relación de nºs de palet (Entradas).
+Private cWhere, cOrder
+
+If !f3_sn(2, 1, 'Imprimir relación de palets (entrada)')
+   Return
+EndIf
+
+*> Crear un cursor con los propietarios a listar.
+cWhere = "F01pCodigo Between '" + m.Ini_Pro + "' And '" + m.Fin_Pro + "'"
+cOrder = "F01pCodigo"
+=f3_sql("*", "F01p", cWhere, cOrder, , 'F01PCUR')
+
+Select F01PCUR
+Go Top
+If Eof()
+   _LxErr = 'No hay propietarios entre los límites seleccionados'
+   Do Form St3Inc With .T.
+   Return
+EndIf
+
+*> Generar el cursor para la relación de palets.
+Do While !Eof()
+   Do GenPalEnt With F01pCodigo, FecDes, FecHas In FacLst
+
+   Select F01PCUR
+   Skip
+EndDo
+
+*> Impresión de la relación, detalle ó resumen.
+lResumen = Iif(m.Resumen==0, .F., .T.)
+Do PrtPalEnt With lResumen In FacLst
+
+Use In (Select ("F01PCUR"))
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _2DJ0TQSA7  ON SELECTION BAR 2 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  FACPALREL.MPR,            Record:    6      
+*       * Called By:  ON SELECTION BAR 2 OF POPUP menúcontex      
+*       * Prompt:     Relación de Palets (Salida)                 
+*       * Snippet:    2                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _2dj0tqsa7
+
+*> Relación de nºs de palet (Salidas).
+Private cWhere, cOrder, lResumen
+
+If !f3_sn(2, 1, 'Imprimir relación de palets (salida)')
+   Return
+EndIf
+
+*> Crear un cursor con los propietarios a listar.
+cWhere = "F01pCodigo Between '" + m.Ini_Pro + "' And '" + m.Fin_Pro + "'"
+cOrder = "F01pCodigo"
+=f3_sql("*", "F01p", cWhere, cOrder, , 'F01PCUR')
+
+Select F01PCUR
+Go Top
+If Eof()
+   _LxErr = 'No hay propietarios entre los límites seleccionados' + cr
+   Do Form St3Inc With .T.
+   Return
+EndIf
+
+*> Generar el cursor para la relación de palets.
+Do While !Eof()
+   Do GenPalSal With F01pCodigo, FecDes, FecHas In FacLst
+
+   Select F01PCUR
+   Skip
+EndDo
+
+*> Impresión de la relación, detalle ó resumen.
+lResumen = Iif(m.Resumen==0, .F., .T.)
+Do PrtPalSal With lResumen In FacLst
+
+Use In (Select ("F01PCUR"))
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _2DJ0TQSA8  ON SELECTION BAR 3 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  FACPALREL.MPR,            Record:    7      
+*       * Called By:  ON SELECTION BAR 3 OF POPUP menúcontex      
+*       * Prompt:     Diario Palets (Facturación)                 
+*       * Snippet:    3                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _2dj0tqsa8
+
+*> Diario de Entrada/Salida de palets (Facturación).
+Private cWhere, cOrder
+
+If m.Resumen > 0
+   =f3_sn(2, 1, 'Opción resumen no permitida en este listado')
+   Return
+EndIf
+
+If !f3_sn(2, 1, 'Imprimir diario de palets (facturación)')
+   Return
+EndIf
+
+*> Crear un cursor con los propietarios a listar.
+cWhere = "F01pCodigo Between '" + m.Ini_Pro + "' And '" + m.Fin_Pro + "'"
+cOrder = "F01pCodigo"
+=f3_sql("*", "F01p", cWhere, cOrder, , 'F01PCUR')
+
+Select F01PCUR
+Go Top
+If Eof()
+   _LxErr = 'No hay propietarios entre los límites seleccionados'
+   Do Form St3Inc With .T.
+   Return
+EndIf
+
+*> Generar el cursor para el diario de palets.
+Do While !Eof()
+   Do GenPalFac With F01pCodigo, FecDes, FecHas In FacLst
+
+   *>
+   Select F01PCUR
+   Skip
+EndDo
+
+*> Impresión de la relación.
+Do PrtPalFac In FacLst
+
+Use In (Select("F01PCUR"))
+

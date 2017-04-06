@@ -1,0 +1,8 @@
+ADD OBJECT cnd1 as st_combo WITH RowSourceType = 5, RowSource = "_cnd1", DisplayValue = , ControlSource = "_cond1", Height = 19, Left = 27, Style = 2, TabIndex = 2, Top = 27, Width = 37
+Error in line 28: Syntax error.
+ADD OBJECT cnd2 as st_combo WITH RowSourceType = 5, RowSource = "_cnd1", DisplayValue = , ControlSource = "_cond2", Height = 19, Left = 279, Style = 2, TabIndex = 4, Top = 27, Width = 37
+Error in line 30: Syntax error.
+ADD OBJECT cnd3 as st_combo WITH RowSourceType = 5, RowSource = "_cnd1", DisplayValue = , ControlSource = "_cond3", Height = 19, Left = 27, Style = 2, TabIndex = 6, Top = 45, Width = 37
+Error in line 31: Syntax error.
+ADD OBJECT cnd4 as st_combo WITH RowSourceType = 5, RowSource = "_cnd1", DisplayValue = , ControlSource = "_cond4", Height = 19, Left = 279, Style = 2, TabIndex = 8, Top = 45, Width = 37
+Error in line 32: Syntax error.

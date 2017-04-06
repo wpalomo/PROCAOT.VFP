@@ -1,0 +1,28 @@
+USE [TORSESA]
+GO
+
+/****** Object:  Table [dbo].[WSEXLOG]    Script Date: 25/11/2015 16:17:23 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[WSEXLOG](
+	[PROCESO] [char](18) NOT NULL,
+	[CLAVE] [char](15) NOT NULL,
+	[FECHA] [datetime] NOT NULL,
+	[ECODIGO] [char](3) NOT NULL,
+	[EMENSAJE] [char](20) NOT NULL,
+	[WSMENSAJE] [char](50) NOT NULL
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+

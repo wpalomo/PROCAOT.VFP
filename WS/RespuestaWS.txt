@@ -1,0 +1,63 @@
+<definitions targetNamespace="urn:microsoft-dynamics-schemas/codeunit/PruebasSGA"
+ xmlns="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/PruebasSGA"><types><schema elementFormDefault="qualified"
+ targetNamespace="urn:microsoft-dynamics-schemas/codeunit/PruebasSGA" 
+xmlns="http://www.w3.org/2001/XMLSchema">
+<element name="WSPrueba"><complexType><sequence><element minOccurs="1" maxOccurs="1" name="importe" 
+type="decimal"/></sequence></complexType></element><element name="WSPrueba_Result"><complexType><sequence>
+<element minOccurs="1" maxOccurs="1" name="return_value" type="string"/></sequence></complexType></element>
+</schema></types><message name="WSPrueba">
+<part name="parameters" 
+element="tns:WSPrueba"/>
+</message><message name="WSPrueba_Result">
+<part name="parameters" element="tns:WSPrueba_Result"/>
+</message><portType name="PruebasSGA_Port"><operation name="WSPrueba"><input name="WSPrueba" 
+message="tns:WSPrueba"/><output name="WSPrueba_Result" message="tns:WSPrueba_Result"/>
+</operation></portType><binding
+ name="PruebasSGA_Binding" 
+type="tns:PruebasSGA_Port">
+<binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+<operation name="WSPrueba"><operation 
+soapAction="urn:microsoft-dynamics-schemas/codeunit/PruebasSGA:WSPrueba" 
+style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+<input name="WSPrueba"><body use="literal" 
+xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/></input><output name="WSPrueba_Result"><body use="literal" 
+xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/></output></operation></binding>
+<service name="PruebasSGA"><port name="PruebasSGA_Port" binding="tns:PruebasSGA_Binding">
+<address location="http://62.82.59.121:7047/DynamicsNAV80/WS/CRONUS%20Espa%C3%B1a%20S.A./Codeunit/PruebasSGA" 
+xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/></port></service>
+</definitions>
+
+
+<definitions targetNamespace="urn:microsoft-dynamics-schemas/codeunit/PruebasSGA" 
+xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/PruebasSGA"><types>
+<schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/PruebasSGA" 
+xmlns="http://www.w3.org/2001/XMLSchema"><element name="WSPrueba"><complexType><sequence>
+<element minOccurs="1" maxOccurs="1" name="importe" type="decimal"/></sequence></complexType>
+</element><element name="WSPrueba_Result"><complexType><sequence><element minOccurs="1" maxOccurs="1"
+ name="return_value" type="string"/></sequence></complexType></element></schema></types>
+<message name="WSPrueba"><part name="parameters" element="tns:WSPrueba"/></message><message 
+name="WSPrueba_Result"><part name="parameters" element="tns:WSPrueba_Result"/></message><portType 
+name="PruebasSGA_Port"><operation name="WSPrueba"><input name="WSPrueba" message="tns:WSPrueba"/>
+<output name="WSPrueba_Result" message="tns:WSPrueba_Result"/></operation></portType><binding name="PruebasSGA_Binding" 
+type="tns:PruebasSGA_Port"><binding 
+transport="http://schemas.xmlsoap.org/soap/http" 
+xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/><operation name="WSPrueba"><operation 
+soapAction="urn:microsoft-dynamics-schemas/codeunit/PruebasSGA:WSPrueba" 
+style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+<input name="WSPrueba"><body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/>
+</input><output name="WSPrueba_Result"><body use="literal" 
+xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/></output></operation></binding><service name="PruebasSGA">
+<port name="PruebasSGA_Port" binding="tns:PruebasSGA_Binding">
+<address location="http://62.82.59.121:7047/DynamicsNAV80/WS/CRONUS%20Espa%C3%B1a%20S.A./Codeunit/PruebasSGA" 
+xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/></port></service>
+</definitions>
+
+<definitions targetNamespace="urn:microsoft-dynamics-schemas/codeunit/PruebasSGA" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/PruebasSGA"><types><schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/PruebasSGA" xmlns="http://www.w3.org/2001/XMLSchema"><element name="WSPrueba"><complexType><sequence><element minOccurs="1" maxOccurs="1" 
+name="importe" type="decimal"/></sequence></complexType></element><element name="WSPrueba_Result"><complexType><sequence><element minOccurs="1" maxOccurs="1" name="return_value" type="string"/></sequence></complexType></element></schema></types><message name="WSPrueba"><part name="parameters" element="tns:WSPrueba"/></message><message name="WSPrueba_Result"><part name="parameters" element="tns:WSPrueba_Result"/></message><portType name="PruebasSGA_Port"><operation name="WSPrueba"><input name="WSPrueba" message="tns:WSPrueba"/><output name="WSPrueba_Result" message="tns:WSPrueba_Result"/></operation></portType><binding name="PruebasSGA_Binding" type="tns:PruebasSGA_Port"><binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/><operation name="WSPrueba"><operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PruebasSGA:WSPrueba" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/><input name="WSPrueba"><body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/></input><output 
+name="WSPrueba_Result"><body use="literal" 
+xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/></output></operation></binding>
+<service name="PruebasSGA"><port name="PruebasSGA_Port" binding="tns:PruebasSGA_Binding">
+<address location="http://62.82.59.121:7047/DynamicsNAV80/WS/CRONUS%20Espa%C3%B1a%20S.A./Codeunit/PruebasSGA" 
+xmlns="http://schemas.xmlsoap.org/wsdl/soap/"/></port></service>
+</definitions>

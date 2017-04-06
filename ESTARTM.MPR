@@ -1,0 +1,136 @@
+*       *********************************************************
+*       *                                                         
+*       * 17/02/2000            ESTARTM.MPR             09:53:47  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * Nombre del autor                                        
+*       *                                                         
+*       * Copyright (C) 2000 Nombre de compañía                   
+*       * Dirección                                               
+*       * Ciudad,     Código pos                                  
+*       * País                                              
+*       *                                                         
+*       * Descripción:                                            
+*       * Este PROGRAMA lo ha generado automáticamente GENMENU.    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                    Definición de menú                   
+*       *                                                         
+*       *********************************************************
+*
+
+DEFINE POPUP menúcontex SHORTCUT RELATIVE FROM MROW(),MCOL()
+DEFINE BAR 1 OF menúcontex PROMPT "Estadística \<General" ;
+	MESSAGE 'Estadística Artículo/Mes (General)'
+DEFINE BAR 2 OF menúcontex PROMPT "Estadística de \<Movimiento" ;
+	MESSAGE 'Estadística Artículo/Mes (Movimiento)'
+DEFINE BAR 3 OF menúcontex PROMPT "Estadística de \<Detalle" ;
+	MESSAGE 'Estadística Artículo/Mes (Detalle)'
+ON SELECTION BAR 1 OF menúcontex ;
+	DO _01c0l7ms6 ;
+	IN LOCFILE("JANSSEN\ESTARTM" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTARTM?")
+ON SELECTION BAR 2 OF menúcontex ;
+	DO _01c0l7msb ;
+	IN LOCFILE("JANSSEN\ESTARTM" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTARTM?")
+ON SELECTION BAR 3 OF menúcontex ;
+	DO _01c0l7msf ;
+	IN LOCFILE("JANSSEN\ESTARTM" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTARTM?")
+
+ACTIVATE POPUP menúcontex
+
+*       *********************************************************
+*       *                                                         
+*       * _01C0L7MS6  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTARTM.MPR,            Record:    5        
+*       * Called By:  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       * Prompt:     Estadística General                         
+*       * Snippet:    1                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01c0l7ms6
+*> ThisForm.itr('EAMG')
+_Label1 = 'LISTADO DE ESTADISTICAS ARTICULO/MES (GENERAL)'
+
+Select ESTARTM
+_Alias = Alias()
+_RecNo = RecNo()
+
+Go Top
+If !Eof()
+   Do Form St3Imp2 With _Label1, 'ESTARTML1', 'ESTARTM'
+EndIf
+
+Select (_Alias)
+Go _RecNo
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _01C0L7MSB  ON SELECTION BAR 2 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTARTM.MPR,            Record:    6        
+*       * Called By:  ON SELECTION BAR 2 OF POPUP menúcontex      
+*       * Prompt:     Estadística de Movimiento                   
+*       * Snippet:    2                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01c0l7msb
+*> ThisForm.itr('EAMM')
+_Label1 = 'LISTADO DE ESTADISTICAS ARTICULO/MES (MOVIMIENTO)'
+
+Select ESTARTM
+_Alias = Alias()
+_RecNo = RecNo()
+
+Go Top
+If !Eof()
+   Do Form St3Imp2 With _Label1, 'ESTARTML2', 'ESTARTM'
+EndIf
+
+Select (_Alias)
+Go _RecNo
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _01C0L7MSF  ON SELECTION BAR 3 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTARTM.MPR,            Record:    7        
+*       * Called By:  ON SELECTION BAR 3 OF POPUP menúcontex      
+*       * Prompt:     Estadística de Detalle                      
+*       * Snippet:    3                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01c0l7msf
+*> ThisForm.itr('EAMM')
+_Label1 = 'LISTADO DE ESTADISTICAS ARTICULO/MES (DETALLE)'
+
+Select ESTARTM
+_Alias = Alias()
+_RecNo = RecNo()
+
+Go Top
+If !Eof()
+   Do Form St3Imp2 With _Label1, 'ESTARTML3', 'ESTARTMD'
+EndIf
+
+Select (_Alias)
+Go _RecNo
+

@@ -1,0 +1,65 @@
+*       *********************************************************
+*       *                                                         
+*       * 06/03/2000           ESTARTMG.MPR             12:32:06  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * Nombre del autor                                        
+*       *                                                         
+*       * Copyright (C) 2000 Nombre de compañía                   
+*       * Dirección                                               
+*       * Ciudad,     Código pos                                  
+*       * País                                              
+*       *                                                         
+*       * Descripción:                                            
+*       * Este PROGRAMA lo ha generado automáticamente GENMENU.    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                    Definición de menú                   
+*       *                                                         
+*       *********************************************************
+*
+
+DEFINE POPUP menúcontex SHORTCUT RELATIVE FROM MROW(),MCOL()
+DEFINE BAR 1 OF menúcontex PROMPT "Ocupación Artículo\<\Media" ;
+	MESSAGE 'Estadística Artículo/Mes (General)'
+ON SELECTION BAR 1 OF menúcontex ;
+	DO _01u0qv975 ;
+	IN LOCFILE("JANSSEN\ESTARTMG" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTARTMG?")
+
+ACTIVATE POPUP menúcontex
+
+*       *********************************************************
+*       *                                                         
+*       * _01U0QV975  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTARTMG.MPR,            Record:    5       
+*       * Called By:  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       * Prompt:     Ocupación ArtículoMedia                     
+*       * Snippet:    1                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01u0qv975
+*>
+*> Gráfico de Ocupación media por artículo.
+
+Select ESTARTM
+If !Eof()
+   _Alias = Alias()
+   _RecNo = RecNo()
+
+   Scatter memVar
+   m.CodPro = m.F60cCodPro
+   Do GenArtOcuMed In ProcGraph With _Asql, _em, ESTARTM.F60cCodArt
+
+   Select (_Alias)
+   Go _RecNo
+EndIf
+

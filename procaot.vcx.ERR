@@ -1,0 +1,12 @@
+ADD OBJECT cnd1 as st_combo WITH DisplayValue = , ControlSource = "_cond1", Height = 19, Left = 27, Style = 2, TabIndex = 2, Top = 27, Width = 37
+Error in line 717: Syntax error.
+ADD OBJECT cnd2 as st_combo WITH DisplayValue = , ControlSource = "_cond2", Height = 19, Left = 279, Style = 2, TabIndex = 4, Top = 27, Width = 37
+Error in line 719: Syntax error.
+ADD OBJECT cnd3 as st_combo WITH DisplayValue = , ControlSource = "_cond3", Height = 19, Left = 27, Style = 2, TabIndex = 6, Top = 45, Width = 37
+Error in line 720: Syntax error.
+ADD OBJECT cnd4 as st_combo WITH DisplayValue = , ControlSource = "_cond4", Height = 19, Left = 279, Style = 2, TabIndex = 8, Top = 45, Width = 37
+Error in line 721: Syntax error.
+Public CHR(13)
+Error in line 4988: Invalid use of a Visual FoxPro function as an array.
+CHR(13) = Chr(13) + Chr(10)
+Error in line 4989: Syntax error.

@@ -1,0 +1,182 @@
+--
+-- Consulta genérica de DOCUMENTOS. V1 a partir de Histórico.
+--
+
+-- Set DateFormat DMY;
+
+Select SEMANA, TIPO, DESCRIPCION, COUNT(DOCUMENTO) As DOCUMENTOS
+From 
+(Select Distinct
+       F00kCodDoc As TIPO,
+       F00kDescri As DESCRIPCION,
+       DatePart("WEEK", F20cFecDoc) As SEMANA,
+       F20CNUMDOC As DOCUMENTO,
+       F20CCODOPE As OPERARIO
+From F00K001, F20C001
+Where F00KCODDOC = F20CTIPDOC
+And   ((F20cTipMov >= '1000' And F20cTipMov <= '1999') Or F20cTipMov = '2999')
+And   (F00KCODDOC Not In ('2000', '2200') Or (F00KCODDOC In ('2000', '2200') And (F20CCODOPE In ('1   ', '11  ', '22  '))))
+And   DATEPART("YEAR", F20CFECDOC) = 2014
+-- And   DATEPART("WEEK", F20CFECDOC) = DATEPART("WEEK", CONVERT(DateTime, '04/08/2014'))
+) A
+Group By SEMANA, TIPO, DESCRIPCION
+Order By SEMANA, TIPO, DESCRIPCION
+-------------------------------------------------------------------------------------------------------------------------------
+--
+-- Consulta genérica de DOCUMENTOS. V2 a partir de Documentos.
+--
+
+-- Set DateFormat DMY;
+
+Select SEMANA, TIPO, DESCRIPCION, COUNT(DOCUMENTO) As DOCUMENTOS
+From 
+(Select
+       F00kCodDoc As TIPO,
+       F00kDescri As DESCRIPCION,
+       DatePart("WEEK", F18cFecPed) As SEMANA,
+       F18CNUMDOC As DOCUMENTO
+From F00K001, F18C001
+Where F00KCODDOC = F18CTIPDOC
+ And   DATEPART("YEAR", F18CFECPED) = 2014
+ And   DATEPART("WEEK", F18CFECPED) = DATEPART("WEEK", CONVERT(DateTime, '04/08/2014'))
+Union All
+Select
+       F00kCodDoc As TIPO,
+       F00kDescri As DESCRIPCION,
+       DatePart("WEEK", F24cFecDoc) As SEMANA,
+       F24CNUMDOC As DOCUMENTO
+From F00K001, F24C001
+Where F00KCODDOC = F24CTIPDOC
+And   DATEPART("YEAR", F24CFECDOC) = 2014
+) A
+Group By SEMANA, TIPO, DESCRIPCION
+Order By SEMANA, TIPO, DESCRIPCION
+-------------------------------------------------------------------------------------------------------------------------------
+--
+-- Consulta genérica de DOCUMENTOS. V3 a partir de Documentos (Entradas) e Histórico (Salidas).
+--
+
+-- Set DateFormat DMY;
+
+Select SEMANA, TIPO, DESCRIPCION, COUNT(DOCUMENTO) As DOCUMENTOS
+From 
+(Select
+       F00kCodDoc As TIPO,
+       F00kDescri As DESCRIPCION,
+       DatePart("WEEK", F18cFecPed) As SEMANA,
+       F18CNUMDOC As DOCUMENTO,
+       ' ' As OPERARIO
+From F00K001, F18C001
+Where F00KCODDOC = F18CTIPDOC
+ And   DATEPART("YEAR", F18CFECPED) = 2014
+Union All
+Select Distinct
+       F00kCodDoc As TIPO,
+       F00kDescri As DESCRIPCION,
+       DatePart("WEEK", F20cFecDoc) As SEMANA,
+       F20CNUMDOC As DOCUMENTO,
+       F20CCODOPE As OPERARIO
+From F00K001, F20C001
+Where F00KCODDOC = F20CTIPDOC
+And   F20CTIPMOV = '2999'
+And   (F00KCODDOC Not In ('2000', '2200') Or (F00KCODDOC In ('2000', '2200') And (F20CCODOPE In ('1   ', '11  ', '22  '))))
+And   DATEPART("YEAR", F20CFECDOC) = 2014
+) A
+Group By SEMANA, TIPO, DESCRIPCION
+Order By SEMANA, TIPO, DESCRIPCION
+-------------------------------------------------------------------------------------------------------------------------------
+--
+-- Consulta genérica de LÍNEAS de DOCUMENTOS. V1 a partir de Histórico.
+--
+
+-- Set DateFormat DMY;
+
+Select SEMANA, TIPO, DESCRIPCION, COUNT(LINEA) As LINEAS
+From 
+(Select Distinct
+       F00kCodDoc As TIPO,
+       F00kDescri As DESCRIPCION,
+       DatePart("WEEK", F20cFecDoc) As SEMANA,
+       F20CNUMDOC As DOCUMENTO,
+       F20cLinDoc As LINEA,
+       F20CCODOPE As OPERARIO
+From F00K001, F20C001
+Where F00KCODDOC = F20CTIPDOC
+And   ((F20cTipMov >= '1000' And F20cTipMov <= '1999') Or F20cTipMov = '2999')
+And   (F00KCODDOC Not In ('2000', '2200') Or (F00KCODDOC In ('2000', '2200') And (F20CCODOPE In ('1   ', '11  ', '22  '))))
+And   DATEPART("YEAR", F20CFECDOC) = 2014
+-- And   DATEPART("WEEK", F20CFECDOC) = DATEPART("WEEK", CONVERT(DateTime, '04/08/2014'))
+) A
+Group By SEMANA, TIPO, DESCRIPCION
+Order By SEMANA, TIPO, DESCRIPCION
+-------------------------------------------------------------------------------------------------------------------------------
+--
+-- Consulta genérica de LÍNEAS de DOCUMENTOS. V2 a partir de Documentos.
+--
+
+-- Set DateFormat DMY;
+
+Select SEMANA, TIPO, DESCRIPCION, COUNT(LINEA) As LINEAS
+From 
+(Select
+       F00kCodDoc As TIPO,
+       F00kDescri As DESCRIPCION,
+       DatePart("WEEK", F18cFecPed) As SEMANA,
+       F18LNUMDOC As DOCUMENTO,
+       F18LLINDOC As LINEA
+From F00K001, F18L001, F18C001
+Where F00KCODDOC = F18LTIPDOC
+And F18CCODPRO = F18LCODPRO And F18CTIPDOC = F18LTIPDOC And F18CNUMDOC = F18LNUMDOC
+And   DATEPART("YEAR", F18CFECPED) = 2014
+Union All
+Select
+       F00kCodDoc As TIPO,
+       F00kDescri As DESCRIPCION,
+       DatePart("WEEK", F24cFecDoc) As SEMANA,
+       F24LNUMDOC As DOCUMENTO,
+       F24LLINDOC As LINEA
+From F00K001, F24L001, F24C001
+Where F00KCODDOC = F24LTIPDOC
+And F24CCODPRO = F24LCODPRO And F24CTIPDOC = F24LTIPDOC And F24CNUMDOC = F24LNUMDOC
+And   DATEPART("YEAR", F24CFECDOC) = 2014
+-- And   DATEPART("WEEK", F24CFECDOC) = DATEPART("WEEK", CONVERT(DateTime, '04/08/2014'))
+) A
+Group By SEMANA, TIPO, DESCRIPCION
+Order By SEMANA, TIPO, DESCRIPCION
+-------------------------------------------------------------------------------------------------------------------------------
+--
+-- Consulta genérica de LÍNEAS de DOCUMENTOS. V3 a partir de Documentos (Entradas) e Histórico (Salidas).
+--
+
+-- Set DateFormat DMY;
+
+Select SEMANA, TIPO, DESCRIPCION, COUNT(LINEA) As LINEAS
+From 
+(Select
+       F00kCodDoc As TIPO,
+       F00kDescri As DESCRIPCION,
+       DatePart("WEEK", F18cFecPed) As SEMANA,
+       F18LNUMDOC As DOCUMENTO,
+       F18LLINDOC As LINEA
+From F00K001, F18L001, F18C001
+Where F00KCODDOC = F18LTIPDOC
+And F18CCODPRO = F18LCODPRO And F18CTIPDOC = F18LTIPDOC And F18CNUMDOC = F18LNUMDOC
+And   DATEPART("YEAR", F18CFECPED) = 2014
+-- And   DATEPART("WEEK", F18CFECPED) = DATEPART("WEEK", CONVERT(DateTime, '04/08/2014'))
+Union All
+Select
+       F00kCodDoc As TIPO,
+       F00kDescri As DESCRIPCION,
+       DatePart("WEEK", F20cFecDoc) As SEMANA,
+       F20cNUMDOC As DOCUMENTO,
+       F20cLINDOC As LINEA
+From F00K001, F20c001
+Where F00KCODDOC = F20cTIPDOC
+And   F20CTIPMOV = '2999'
+And   (F00KCODDOC Not In ('2000', '2200') Or (F00KCODDOC In ('2000', '2200') And (F20CCODOPE In ('1   ', '11  ', '22  '))))
+And   DATEPART("YEAR", F20CFECDOC) = 2014
+-- And   DATEPART("WEEK", F24CFECDOC) = DATEPART("WEEK", CONVERT(DateTime, '04/08/2014'))
+) A
+Group By SEMANA, TIPO, DESCRIPCION
+Order By SEMANA, TIPO, DESCRIPCION
+-------------------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,213 @@
+*       *********************************************************
+*       *                                                         
+*       * 06/03/2000           ESTDISMG.MPR             17:16:19  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * Nombre del autor                                        
+*       *                                                         
+*       * Copyright (C) 2000 Nombre de compañía                   
+*       * Dirección                                               
+*       * Ciudad,     Código pos                                  
+*       * País                                              
+*       *                                                         
+*       * Descripción:                                            
+*       * Este PROGRAMA lo ha generado automáticamente GENMENU.    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                    Definición de menú                   
+*       *                                                         
+*       *********************************************************
+*
+
+DEFINE POPUP menúcontex SHORTCUT RELATIVE FROM MROW(),MCOL()
+DEFINE BAR 1 OF menúcontex PROMPT "Distribución \<General" ;
+	MESSAGE 'Estadística Distribución (General)'
+DEFINE BAR 2 OF menúcontex PROMPT "\<Expediciones Distribución /Mes" ;
+	MESSAGE 'Estadística Distribución - Mes (Expedciones)'
+DEFINE BAR 3 OF menúcontex PROMPT "\<Bultos Distribución /\<Mes" ;
+	MESSAGE 'Estadística Distribución - Mes (Bultos)'
+DEFINE BAR 4 OF menúcontex PROMPT "\<Kilos Distribución / Mes" ;
+	MESSAGE 'Estadística Distribución - Mes (Kilos)'
+DEFINE BAR 5 OF menúcontex PROMPT "\<Pesetas Distribución / Mes" ;
+	MESSAGE 'Estadística Distribución - Mes (Pesetas)'
+ON SELECTION BAR 1 OF menúcontex ;
+	DO _01u110tta ;
+	IN LOCFILE("JANSSEN\ESTDISMG" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTDISMG?")
+ON SELECTION BAR 2 OF menúcontex ;
+	DO _01u110tte ;
+	IN LOCFILE("JANSSEN\ESTDISMG" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTDISMG?")
+ON SELECTION BAR 3 OF menúcontex ;
+	DO _01u110ttj ;
+	IN LOCFILE("JANSSEN\ESTDISMG" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTDISMG?")
+ON SELECTION BAR 4 OF menúcontex ;
+	DO _01u110ttn ;
+	IN LOCFILE("JANSSEN\ESTDISMG" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTDISMG?")
+ON SELECTION BAR 5 OF menúcontex ;
+	DO _01u110ttr ;
+	IN LOCFILE("JANSSEN\ESTDISMG" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTDISMG?")
+
+ACTIVATE POPUP menúcontex
+
+*       *********************************************************
+*       *                                                         
+*       * _01U110TTA  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTDISMG.MPR,            Record:    5       
+*       * Called By:  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       * Prompt:     Distribución General                        
+*       * Snippet:    1                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01u110tta
+*>
+*> Gráfico de distribución general.
+
+Select ESTDISM
+If !Eof()
+   _Alias = Alias()
+   _RecNo = RecNo()
+
+   Scatter MemVar
+   m.CodPro = m.F63cCodPro
+   Do GenDisGen In ProcGraph With _ASql, _em
+
+   Select (_Alias)
+   Go _RecNo
+EndIf
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _01U110TTE  ON SELECTION BAR 2 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTDISMG.MPR,            Record:    6       
+*       * Called By:  ON SELECTION BAR 2 OF POPUP menúcontex      
+*       * Prompt:     Expediciones Distribución /Mes              
+*       * Snippet:    2                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01u110tte
+*>
+*> Gráfico de distribución expediciones / mes.
+
+Select ESTDISM
+If !Eof()
+   _Alias = Alias()
+   _RecNo = RecNo()
+
+   Scatter MemVar
+   m.CodPro = m.F63cCodPro
+   Do GenDisExp In ProcGraph With _ASql, _em
+
+   Select (_Alias)
+   Go _RecNo
+EndIf
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _01U110TTJ  ON SELECTION BAR 3 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTDISMG.MPR,            Record:    7       
+*       * Called By:  ON SELECTION BAR 3 OF POPUP menúcontex      
+*       * Prompt:     Bultos Distribución /<Mes                   
+*       * Snippet:    3                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01u110ttj
+*>
+*> Gráfico de distribución bultos / mes.
+
+Select ESTDISM
+If !Eof()
+   _Alias = Alias()
+   _RecNo = RecNo()
+
+   Scatter MemVar
+   m.CodPro = m.F63cCodPro
+   Do GenDisBul In ProcGraph With _ASql, _em
+
+   Select (_Alias)
+   Go _RecNo
+EndIf
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _01U110TTN  ON SELECTION BAR 4 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTDISMG.MPR,            Record:    8       
+*       * Called By:  ON SELECTION BAR 4 OF POPUP menúcontex      
+*       * Prompt:     Kilos Distribución / Mes                    
+*       * Snippet:    4                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01u110ttn
+*>
+*> Gráfico de distribución kilos / mes.
+
+Select ESTDISM
+If !Eof()
+   _Alias = Alias()
+   _RecNo = RecNo()
+
+   Scatter MemVar
+   m.CodPro = m.F63cCodPro
+   Do GenDisKgs In ProcGraph With _ASql, _em
+
+   Select (_Alias)
+   Go _RecNo
+EndIf
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _01U110TTR  ON SELECTION BAR 5 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTDISMG.MPR,            Record:    9       
+*       * Called By:  ON SELECTION BAR 5 OF POPUP menúcontex      
+*       * Prompt:     Pesetas Distribución / Mes                  
+*       * Snippet:    5                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01u110ttr
+*>
+*> Gráfico de distribución pesetas / mes.
+
+Select ESTDISM
+If !Eof()
+   _Alias = Alias()
+   _RecNo = RecNo()
+
+   Scatter MemVar
+   m.CodPro = m.F63cCodPro
+   Do GenDisPts In ProcGraph With _ASql, _em
+
+   Select (_Alias)
+   Go _RecNo
+EndIf
+

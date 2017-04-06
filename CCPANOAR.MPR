@@ -1,0 +1,156 @@
+*       *********************************************************
+*       *                                                         
+*       * 20/02/2003           CCPANOAR.MPR             15:22:32  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * Nombre del autor                                        
+*       *                                                         
+*       * Copyright (C) 2003 Nombre de compañía                   
+*       * Dirección                                               
+*       * Ciudad,     Código pos                                  
+*       * País                                              
+*       *                                                         
+*       * Descripción:                                            
+*       * Este PROGRAMA lo ha generado automáticamente GENMENU.    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                    Definición de menú                   
+*       *                                                         
+*       *********************************************************
+*
+
+DEFINE POPUP menúcontex SHORTCUT RELATIVE FROM MROW(),MCOL()
+DEFINE BAR 1 OF menúcontex PROMPT "Ocupaciones  \<Mapa Almacén" ;
+	MESSAGE 'Gráfico de Ubicaciones Libres/Ocupadas (Mapa de Almacén)'
+DEFINE BAR 2 OF menúcontex PROMPT "Ocupaciones  \<Zonas Almacén" ;
+	MESSAGE 'Gráfico de Ubicaciones Libres/Ocupadas (Zonas de Almacén)'
+DEFINE BAR 3 OF menúcontex PROMPT "Ocupaciones  \<Tamaños" ;
+	MESSAGE 'Gráfico de Ubicaciones Libres/Ocupadas (Tamaños)'
+DEFINE BAR 4 OF menúcontex PROMPT "Ocupación Artículo \<Media" ;
+	SKIP FOR Empty(m.CodArt)
+ON SELECTION BAR 1 OF menúcontex ;
+	DO _0w00wyfdk ;
+	IN LOCFILE("PROCAOT\CCPANOAR" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está CCPANOAR?")
+ON SELECTION BAR 2 OF menúcontex ;
+	DO _0w00wyfdl ;
+	IN LOCFILE("PROCAOT\CCPANOAR" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está CCPANOAR?")
+ON SELECTION BAR 3 OF menúcontex ;
+	DO _0w00wyfdm ;
+	IN LOCFILE("PROCAOT\CCPANOAR" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está CCPANOAR?")
+ON SELECTION BAR 4 OF menúcontex ;
+	DO _0w00wyfdn ;
+	IN LOCFILE("PROCAOT\CCPANOAR" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está CCPANOAR?")
+
+ACTIVATE POPUP menúcontex
+
+*       *********************************************************
+*       *                                                         
+*       * _0W00WYFDK  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  CCPANOAR.MPR,            Record:    5       
+*       * Called By:  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       * Prompt:     Ocupaciones  Mapa Almacén                   
+*       * Snippet:    1                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _0w00wyfdk
+*>
+*> Gráfico de ubicaciones libres/ocupadas (Mapa).
+
+_Alias = Alias()
+_RecNo = RecNo()
+
+Do GenOcuMap In ProcGraph With _ASql, _em
+
+Select (_Alias)
+Go _RecNo
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _0W00WYFDL  ON SELECTION BAR 2 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  CCPANOAR.MPR,            Record:    6       
+*       * Called By:  ON SELECTION BAR 2 OF POPUP menúcontex      
+*       * Prompt:     Ocupaciones  Zonas Almacén                  
+*       * Snippet:    2                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _0w00wyfdl
+*>
+*> Gráfico de ubicaciones libres/ocupadas (Zonas).
+
+_Alias = Alias()
+_RecNo = RecNo()
+
+Do GenOcuZon In ProcGraph With _Asql, _em
+
+Select (_Alias)
+Go _RecNo
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _0W00WYFDM  ON SELECTION BAR 3 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  CCPANOAR.MPR,            Record:    7       
+*       * Called By:  ON SELECTION BAR 3 OF POPUP menúcontex      
+*       * Prompt:     Ocupaciones  Tamaños                        
+*       * Snippet:    3                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _0w00wyfdm
+*>
+*> Gráfico de ubicaciones libres/ocupadas (Tamaños).
+
+_Alias = Alias()
+_RecNo = RecNo()
+
+Do GenOcuTam In ProcGraph With _Asql, _em
+
+Select (_Alias)
+Go _RecNo
+
+
+
+*       *********************************************************
+*       *                                                         
+*       * _0W00WYFDN  ON SELECTION BAR 4 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  CCPANOAR.MPR,            Record:    8       
+*       * Called By:  ON SELECTION BAR 4 OF POPUP menúcontex      
+*       * Prompt:     Ocupación Artículo Media                    
+*       * Snippet:    4                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _0w00wyfdn
+*>
+*> Gráfico de Ocupación media por artículo.
+
+_Alias = Alias()
+_RecNo = RecNo()
+
+Do GenArtOcuMed In ProcGraph With _Asql, _em, m.CodArt
+
+Select (_Alias)
+Go _RecNo
+

@@ -1,0 +1,54 @@
+*       *********************************************************
+*       *                                                         
+*       * 19/09/2000            ST3IMP2.MPR             14:20:00  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * Nombre del autor                                        
+*       *                                                         
+*       * Copyright (C) 2000 Nombre de compañía                   
+*       * Dirección                                               
+*       * Ciudad,     Código pos                                  
+*       * País                                              
+*       *                                                         
+*       * Descripción:                                            
+*       * Este PROGRAMA lo ha generado automáticamente GENMENU.    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                    Definición de menú                   
+*       *                                                         
+*       *********************************************************
+*
+
+DEFINE POPUP menúcontex SHORTCUT RELATIVE FROM MROW(),MCOL()
+DEFINE BAR 1 OF menúcontex PROMPT "Establecer impresora predeterminada" ;
+	MESSAGE 'Establecer impresora predeterminada'
+ON SELECTION BAR 1 OF menúcontex ;
+	DO _07b0upyzc ;
+	IN LOCFILE("JANSSEN\ST3IMP2" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ST3IMP2?")
+
+ACTIVATE POPUP menúcontex
+
+*       *********************************************************
+*       *                                                         
+*       * _07B0UPYZC  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ST3IMP2.MPR,            Record:    5        
+*       * Called By:  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       * Prompt:     Establecer impresora predeterminada         
+*       * Snippet:    1                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _07b0upyzc
+*>
+*> Establecer la impresora activa.
+
+Set Printer To Name GetPrinter()
+

@@ -1,0 +1,64 @@
+*       *********************************************************
+*       *                                                         
+*       * 17/02/2000            ESTARTD.MPR             11:00:24  
+*       *                                                         
+*       *********************************************************
+*       *                                                         
+*       * Nombre del autor                                        
+*       *                                                         
+*       * Copyright (C) 2000 Nombre de compañía                   
+*       * Dirección                                               
+*       * Ciudad,     Código pos                                  
+*       * País                                              
+*       *                                                         
+*       * Descripción:                                            
+*       * Este PROGRAMA lo ha generado automáticamente GENMENU.    
+*       *                                                         
+*       *********************************************************
+
+
+*       *********************************************************
+*       *                                                         
+*       *                    Definición de menú                   
+*       *                                                         
+*       *********************************************************
+*
+
+DEFINE POPUP menúcontex SHORTCUT RELATIVE FROM MROW(),MCOL()
+DEFINE BAR 1 OF menúcontex PROMPT "Estadística Artículo/\<Día" ;
+	MESSAGE 'Estadística Artículo/Día'
+ON SELECTION BAR 1 OF menúcontex ;
+	DO _01c0nlb0x ;
+	IN LOCFILE("JANSSEN\ESTARTD" ,"MPX;MPR|FXP;PRG" ,"DÓNDE está ESTARTD?")
+
+ACTIVATE POPUP menúcontex
+
+*       *********************************************************
+*       *                                                         
+*       * _01C0NLB0X  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       *                                                         
+*       * Procedure Origin:                                       
+*       *                                                         
+*       * From Menu:  ESTARTD.MPR,            Record:    5        
+*       * Called By:  ON SELECTION BAR 1 OF POPUP menúcontex      
+*       * Prompt:     Estadística Artículo/Día                    
+*       * Snippet:    1                                           
+*       *                                                         
+*       *********************************************************
+*
+PROCEDURE _01c0nlb0x
+*> ThisForm.itr('EADG')
+_Label1 = 'LISTADO DE ESTADISTICAS ARTICULO / DIA'
+
+Select ESTARTD
+_Alias = Alias()
+_RecNo = RecNo()
+
+Go Top
+If !Eof()
+   Do Form St3Imp2 With _Label1, 'ESTARTDL1', 'ESTARTD'
+EndIf
+
+Select (_Alias)
+Go _RecNo
+
